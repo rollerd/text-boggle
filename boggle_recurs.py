@@ -24,8 +24,8 @@ def create_board(x, y):
 def print_board(board):
     for row in board:
         for letter in row:
-            print letter,
-        print
+            print(letter + " ", end="")
+        print()
         
         
 def save_board(board):
@@ -52,8 +52,8 @@ def calculate_points(word):
 
 
 def end_game(score):
-    print 'GAME OVER'
-    print 'Your final score is: %s' % score
+    print('GAME OVER')
+    print('Your final score is: %s' % score)
     return 0
 
 
@@ -102,7 +102,7 @@ def get_input():
     score = 0
     word_list = get_word_list()
     global BOARD2
-    board_size = raw_input("Please enter a size for the board(X x X): ")
+    board_size = input("Please enter a size for the board(X x X): ")
     x, y = int(board_size), int(board_size)
     board = create_board(x, y)
 #    save_board(board)    #Uncomment to save board to text file for letter frequency analysis
@@ -110,22 +110,22 @@ def get_input():
     while True:
         board = board_reset()
         print_board(board)
-        input1 = (raw_input('Enter the word to find (1 to end): ')).upper()
+        input1 = (input('Enter the word to find (1 to end): ')).upper()
         result = find_position(board, input1)
         if input1 == '1':
             end_game(score)
             break
         if result and (input1 + '\n') in word_list and input1 not in used_words:
-            print 'WORD FOUND'
+            print('WORD FOUND')
             points = calculate_points(input1)
             score += points
-            print 'Word score: %s' % points
-            print 'Total Score: %s \n' % score
+            print('Word score: %s' % points)
+            print('Total Score: %s \n' % score)
             used_words.append(input1)
         elif result and input1 in used_words:
-            print 'WORD HAS ALREADY BEEN USED \n'
+            print('WORD HAS ALREADY BEEN USED \n')
         else:
-            print 'WORD NOT FOUND \n'
+            print('WORD NOT FOUND \n')
      
 get_input()
 
